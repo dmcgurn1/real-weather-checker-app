@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<meta charset="UTF-8">
+<head>
+<title></title>
+</head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<body>
+
+<link rel='stylesheet' type='text/css' href='static/style.css'>
+
+<div class="welcome-section dashboard-section">
+<h1>Dylan's Real Weather Checker App:</h1>
+<script>
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
+</script>
+<h2> Enter Town / City & Country </h2>
+    <form action="/" method="post">
+    <input type="text" id="town" name="townName" placeholder="Town/City">
+    <input type="text" id="country" name="countryCode" value="GB">
+    <br><br>
+    <button onclick="$('#loading').show();">Find</button>
+    </form>
+</div>
+
+<div class="welcome-section"><p id="loading" style="display:none;"><img src="static/weather_vane_preloader.gif" alt="Fetching weather data..." /></p></div>
+
+</body>
+</html>

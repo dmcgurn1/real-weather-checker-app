@@ -1,0 +1,100 @@
+html,
+body {
+	height: 95%;
+}
+
+body {
+	background-color: #e6f7ff; /* Light blue background */
+	font-family: 'Arial', sans-serif;
+	margin: 5px;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3,1fr);
+	gap: 20px;
+	height: 55%;
+}
+
+h1 {
+	font-size: 30px;
+	color: #004080; /* Dark blue text color */
+	align-items: center;
+}
+
+h2, h3 {
+	font-size: 20px;
+	color: #004080; /* Dark blue text color */
+	margin-top: 10px
+}
+
+h4 {
+	font-size: 40px;
+	font-style: bold;
+}
+
+p {
+	margin-bottom: 10px;
+}
+
+#p2 {
+	font-size:20px;
+}
+
+#desc {
+	font-size: 30px;
+}
+
+#UV_index {
+	font-size: 60px;
+	font-weight: bold;
+}
+
+#Error {
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
+
+.inline {
+  display: inline;
+}
+
+.dashboard-section {
+	padding: 15px;
+	background-color: #ffffff; /* White background for each section */
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-section {
+	grid-column: span 4;
+	text-align: center;
+}
+
+.datetime-section {
+	grid-column: span 1;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.map-section {
+	grid-column: span 1;
+	display: grid;
+	grid-template-columns: 20% 80%;
+}
+
+
+
+.weather-section {
+	grid-column: span 2;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.UV-section {
+	grid_column: span 1;
+	display: grid;
+	grid-template-columns: 30% 30% 40%;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<meta charset="UTF-8">
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+ integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+ crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+<title>Dylan's Real Weather Checker Results {current_date_str} {current_time_str}</title>
+</head> 
+<body>
+
+<link rel='stylesheet' type='text/css' href='static/style.css'>
+    <div class="welcome-section dashboard-section">
+        <h1>&#127756 Weather Results for {{output_data.location_name}} (ID: {{output_data.location_id}}) &#127756</h1>
+<script>
+if ( window.history.replaceState ) {
+window.history.replaceState( null, null, window.location.href );
+}
+</script>
+<h2> Enter Town / City & Country </h2>
+    <form action="/" method="post">
+    <input type="text" id="town" name="townName" placeholder="Town/City">
+    <input type="text" id="country" name="countryCode" value="GB">
+    <br><br>
+    <button onclick="$('#loading').show();">Find</button>
+    </form>
+</div>
+
+<div class="welcome-section">
+	<p id="loading" style="display:none;"><img src="static/weather_vane_preloader.gif" alt="Fetching weather data..." /></p>
+</div>
+
+<div class="datetime-section dashboard-section">
+	<div>
+	<h2>Date and Time</h2>
+	<p>Date: {{ output_data.current_date }}<br>
+	<p>Time: {{ output_data.current_time }}</p>
+	</div>
+	<div style="position: relative" style="position: relative;">
+	<canvas id="canvas" width="200" height="200" style="background-color:white; position: relative; right: 10px; top: 10px;">
+	</canvas>
+	<script src="static/clockscript.js"></script>
+	</script>
+	</div>
+</div>
+<div class="map-section dashboard-section">
+	<h2>Map:</h2>
+	<div id="map">
+	<br>
+	<script>
+	var map = L.map('map').setView([{{output_data.latitude}}, {{output_data.longitude}}], 13);
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+	</script>
+	</div>
+</div>
+<div class="weather-section dashboard-section">
+	<div>
+	<h3> Weather:</h3>
+	<p class="inline" id="desc">&#127777 {{ output_data.temperature }}°C</p>
+	<br>
+	<p class="inline">Feels like: </p><p class="inline" id="p2">{{ output_data.feels_like }}°C</p><p class="inline"></p>
+	<br><br>
+	<p class="inline" id="p2">Humidity: {{ output_data.humidity }}%</p>
+	<br><br>
+	<p class="inline" id="desc">{{ output_data.weather_emoji | safe}} {{ output_data.weather_desc }}</p>
+	</div>
+	<div>
+	{{ output_data.weather_image | safe}}
+	</div>
+</div>
+<div class="dashboard-section">
+	<div>
+	<h3> Wind:</h3>
+	<p> {{ output_data.wind_desc }}<br><br>
+	Wind speed: {{ output_data.wind_speed }} mph <br><br>
+	Gust speed: {{ output_data.gust_speed }} mph </p>
+	</div>
+</div>
+<div class="dashboard-section">
+	<div>
+	<h3> Precipitation:</h3>
+	<p> Rain chance: {{ output_data.rain_chance }}% <br><br>
+	Rain amount: {{ output_data.rain_amount }}mm <br>
+	{% if output_data.snow_condition_flag == 1 %}
+	{{ output_data.snow_amount }}mm
+	{% endif %}
+	</p>
+	</div>
+</div>
+<div class="UV-section dashboard-section">
+	<div>
+	<h3> UV:</h3>
+	</div>
+	<div>
+	<p id="UV_index">{{ output_data.uv_index_code }}</p>
+	</div>
+	<div>
+	<p>{{ output_data.uv_index_desc }}</p>
+	</div>
+</div>
+<div class="dashboard-section">
+	<div>
+	<h3> Sun/Moon:</h3>
+	<p style="text-align:center"> Sunrise &#127774: {{ output_data.sunrise }} <br><br>
+	Sunset &#127751: {{ output_data.sunset }} <br><br>
+	Moon: {{ output_data.moon_phase }} {{ output_data.moon_emoji | safe }} ({{ output_data.moon_percent }}% Visible)</p>
+	</div>
+</div>
+</body> 
+</html> 
